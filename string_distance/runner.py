@@ -8,14 +8,31 @@ parser.add_argument("--python", "-p", action="store_true")
 args = parser.parse_args()
 
 if args.python:
-    from py_edit_distance import levenshtein, levenshtein_no_sub
+    from py_edit_distance import levenshtein
 else:
-    from edit_distance import levenshtein, levenshtein_no_sub, levenshtein_parallel, levenshtein_heavy_vowels
+    from edit_distance import levenshtein, levenshtein_no_sub, levenshtein_heavy_vowels
+    from float_edit_distance import brew
+    from edit_distance_parallel import levenshtein_parallel
 
 print(levenshtein("intention", "execution"))
 print(levenshtein_parallel("intention", "execution"))
 print(levenshtein_no_sub("intention", "execution"))
 print(levenshtein_heavy_vowels("intention", "execution"))
+
+print("~~~~~~~~~~~~~~~~~~~~~~~~")
+print(brew("barracuda", "CudaEye by Barracuda Networks"))
+print(levenshtein("barracuda", "CudaEye by Barracuda Networks"))
+print(brew("barracuda", "Barracuda Networks"))
+print(levenshtein("barracuda", "Barracuda Networks"))
+print("~~~~~~~~~~~~~~~~~~~~~~~~")
+
+print("~~~~~~~~~~~~~~~~~~~~~~~~")
+print(brew("Hosp", "Hospital"))
+print(levenshtein("Hosp", "Hospital"))
+print("~~~~~~~~~~~~~~~~~~~~~~~~")
+print(brew("Clmbs Blvd", "Columbus Boulevard"))
+print(levenshtein("Clmbs Blvd", "Columbus Boulevard"))
+print("~~~~~~~~~~~~~~~~~~~~~~~~")
 
 url1 = "https://en.wikipedia.org/wiki/Edit_distance"
 text1 = requests.get(url1).text

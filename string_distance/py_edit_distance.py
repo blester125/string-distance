@@ -39,10 +39,16 @@ def distance(
 
     for i in range(1, n + 1):
         for j in range(1, m + 1):
+            sub_cost_ = 1
+            if source[i - 1] == target[j - 1]:
+                sub_cost_ = 0
             table[i, j] = min(
-                table[i - 1, j] + delete_cost(source[i - 1]),
-                table[i, j - 1] + insert_cost(target[j - 1]),
-                table[i - 1, j - 1] + substitution_cost(source[i - 1], target[j - 1])
+                # table[i - 1, j] + delete_cost(source[i - 1]),
+                # table[i, j - 1] + insert_cost(target[j - 1]),
+                # table[i - 1, j - 1] + substitution_cost(source[i - 1], target[j - 1])
+                table[i - 1, j] + 1,
+                table[i, j - 1] + 1,
+                table[i - 1, j - 1] + sub_cost_
             )
 
     # top = np.array(list("#" + target))
@@ -53,8 +59,7 @@ def distance(
     # table = np.concatenate([side, table], axis=1)
     # print(table)
 
-    minimum_edit_distance = table[n, m]
-    return minimum_edit_distance
+    return table[n, m]
 
 
 def diag_dist(

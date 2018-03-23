@@ -1,0 +1,4 @@
+include string_distance/edit_distance.c
+include string_distance/float_edit_distance.c
+include string_distance/float_edit_distance.pxd
+include string_distance/edit_distance.pxd
