@@ -12,10 +12,10 @@ if args.python:
 else:
     from edit_distance import levenshtein, levenshtein_no_sub, levenshtein_heavy_vowels
     from float_edit_distance import brew
-    from edit_distance_parallel import levenshtein_parallel
+    # from edit_distance_parallel import levenshtein_parallel
 
 print(levenshtein("intention", "execution"))
-print(levenshtein_parallel("intention", "execution"))
+# print(levenshtein_parallel("intention", "execution"))
 print(levenshtein_no_sub("intention", "execution"))
 print(levenshtein_heavy_vowels("intention", "execution"))
 

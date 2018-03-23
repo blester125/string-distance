@@ -11,7 +11,7 @@ ext_modules = [
     ),
 ]
 
-version = "0.1.1"
+version = "0.1.2"
 
 setup(
     name="string_distance",
@@ -36,9 +36,6 @@ setup(
     keywords=["NLP", "fuzzy", "matching"],
     setup_requires=[
         'cython',
-    ],
-    install_requires=[
-        'numpy',
     ],
     ext_modules=ext_modules
 )

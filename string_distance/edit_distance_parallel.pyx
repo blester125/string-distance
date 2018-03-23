@@ -2,8 +2,8 @@
 # cython: boundscheck=False
 # cython: wrap_around=False
 
-import numpy as np
 from cpython cimport PyMem_Malloc, PyMem_Free
+from cython.view cimport array as cvarray
 from edit_distance cimport ins_func, del_func, sub_func1
 from cython.parallel cimport prange
 
@@ -19,8 +19,7 @@ cdef int distance_parallel(
     cdef int n = len(source)
     cdef int m = len(target)
     cdef int i, j, k, diags, start_col, diag_size, diag, rows, cols
-    np_table = np.zeros((n + 1, m + 1), dtype=np.int32)
-    cdef int[:, :] table = np_table
+    cdef int[:, :] table = cvarray(shape=(n + 1, m + 1), item=sizeof(int), format="i")
     cdef int* soruce_ints
     cdef int* target_ints
 

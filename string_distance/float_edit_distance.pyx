@@ -2,8 +2,8 @@
 # cython: boundscheck=False
 # cython: wrap_around=False
 
-import numpy as np
 from cpython cimport PyMem_Malloc, PyMem_Free
+from cython.view cimport array as cvarray
 
 cdef float distance(
         unicode source, unicode target,
@@ -14,7 +14,7 @@ cdef float distance(
     cdef int n = len(source)
     cdef int m = len(target)
     cdef int i, j
-    cdef float[:, :] table = np.zeros((n + 1, m + 1), dtype=np.float32)
+    cdef float[:, :] table = cvarray(shape=(n + 1, m + 1), itemsize=sizeof(float), format="f")
     cdef int* soruce_ints
     cdef int* target_ints
 
