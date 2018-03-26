@@ -8,6 +8,11 @@ for i in range(VOWEL_SIZE):
 ctypedef int (*cmp_func)(int c1, int c2)
 ctypedef int (*char_func)(int c)
 
+
+cdef inline int trans_func(int c1, int c2):
+    return 1
+
+
 cdef inline int sub_func1(int c1, int c2) nogil:
     if c1 == c2:
         return 0
