@@ -5,6 +5,17 @@
 from cpython cimport PyMem_Malloc, PyMem_Free
 from cython.view cimport array as cvarray
 
+
+cpdef int hamming(unicode source, unicode target):
+    cdef int i
+    cdef int length = len(source)
+    cdef int distance = 0
+    for i in range(length):
+        if source[i] != target[i]:
+            distance += 1
+    return distance
+
+
 cdef int distance(
         unicode source, unicode target,
         char_func insert_cost,
