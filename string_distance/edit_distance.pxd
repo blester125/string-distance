@@ -5,6 +5,7 @@ cdef int i
 for i in range(VOWEL_SIZE):
     VOWELS[i] = vowels[i]
 
+
 ctypedef int (*cmp_func)(int c1, int c2)
 ctypedef int (*char_func)(int c)
 
