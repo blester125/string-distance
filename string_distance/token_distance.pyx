@@ -22,6 +22,17 @@ cpdef dict binary_shingle(list ngrams):
     return shingled
 
 
+cpdef dict shingle(list ngrams):
+    cdef dict shingled = {}
+    cdef unicode gram
+    for gram in ngrams:
+        if gram in shingled:
+            shingled[gram] += 1
+        else:
+            shingled[gram] = 1
+    return shingled
+
+
 cpdef float binary_cosine(dict source, dict target):
     """intersection could be computed with `len(set(source) & set(target))`
     that is fastest for normal python but with cython explicit loops are faster.
@@ -32,11 +43,30 @@ cpdef float binary_cosine(dict source, dict target):
     """
     cdef unicode key
     cdef int intersection = 0
+    # Because this is binary the norm of a vector is just the sum of the vector
     cdef float norm = sqrt(len(source)) * sqrt(len(target))
     for key in source:
         if key in target:
             intersection += 1
     return 1 - (intersection / norm)
+
+
+cpdef float norm(dict vector):
+    cdef float norm_val = 0
+    for v in vector.values():
+        norm_val += v * v
+    return sqrt(norm_val)
+
+
+cpdef float cosine(dict source, dict target):
+    cdef float source_norm = norm(source)
+    cdef float target_norm = norm(target)
+    cdef float norm_ = source_norm + target_norm
+    cdef float intersection = 0
+    for k, v in source.items():
+        if k in target:
+            intersection += v * target[k]
+    return 1 - (intersection / norm_)
 
 
 cpdef float jaccard(dict source, dict target):
