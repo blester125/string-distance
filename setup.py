@@ -13,6 +13,10 @@ ext_modules = [
         "string_distance.sequence_distance",
         ["string_distance/sequence_distance.pyx"]
     ),
+    Extension(
+        "string_distance.token_distance",
+        ["string_distance/token_distance.pyx"]
+    ),
 ]
 
 version = "0.1.2"
