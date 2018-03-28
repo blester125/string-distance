@@ -5,3 +5,7 @@ from string_distance.edit_distance import (
     hamming
 )
 from string_distance.float_edit_distance import brew
+from string_distance.sequence_distance import (
+    longest_common_subsequence,
+    longest_common_substring
+)

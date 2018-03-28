@@ -9,6 +9,10 @@ ext_modules = [
         "string_distance.float_edit_distance",
         ["string_distance/float_edit_distance.pyx"]
     ),
+    Extension(
+        "string_distance.sequence_distance",
+        ["string_distance/sequence_distance.pyx"]
+    ),
 ]
 
 version = "0.1.2"
