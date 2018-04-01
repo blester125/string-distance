@@ -1,3 +1,4 @@
 cd ..
 python setup.py build_ext --inplace
+python smoke.py
 cd string_distance

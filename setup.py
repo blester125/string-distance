@@ -2,8 +2,16 @@ from setuptools import setup, find_packages, Extension
 
 ext_modules = [
     Extension(
+        "string_distance.minimum_edit_distance",
+        ["string_distance/minimum_edit_distance.pyx"]
+    ),
+    Extension(
         "string_distance.edit_distance",
         ["string_distance/edit_distance.pyx"],
+    ),
+    Extension(
+        "string_distance.float_minimum_edit_distance",
+        ["string_distance/float_minimum_edit_distance.pyx"]
     ),
     Extension(
         "string_distance.float_edit_distance",
@@ -34,10 +42,16 @@ setup(
     packages=find_packages(),
     package_data={
         'string_distance': [
+            'string_distance/cost.pxd',
             'string_distance/edit_distance.c',
+            'string_distance/minimum_edit_distance.c',
+            'string_distance/minimum_edit_distance.pxd',
+            'string_distance/float_cost.pxd',
             'string_distance/float_edit_distance.c',
-            'string_distance/edit_distance.pxd',
-            'string_distance/float_edit_distance.pxd',
+            'string_distance/float_minimum_edit_distance.c',
+            'string_distance/float_minimum_edit_distance.pxd',
+            'string_distance/sequence_distance',
+            'string_distance/token_distance',
         ],
     },
     include_package_data=True,
@@ -45,5 +59,8 @@ setup(
     setup_requires=[
         'cython',
     ],
+    # install_requires=[
+    #     'cython',
+    # ],
     ext_modules=ext_modules
 )
