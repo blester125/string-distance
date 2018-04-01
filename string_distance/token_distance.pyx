@@ -1,6 +1,6 @@
 # cython: language_level=3
 # cython: boundscheck=False
-# cython: wrap_around=False
+# cython: wraparound=False
 
 from cpython cimport PyMem_Malloc, PyMem_Free
 from libc.math cimport sqrt

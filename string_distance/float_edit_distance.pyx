@@ -1,6 +1,6 @@
 # cython: language_level=3
 # cython: boundscheck=False
-# cython: wrap_around=False
+# cython: wraparound=False
 
 from string_distance.float_minimum_edit_distance cimport distance
 from string_distance.float_cost cimport ins_func, del_func, sub_func

@@ -50,8 +50,9 @@ setup(
             'string_distance/float_edit_distance.c',
             'string_distance/float_minimum_edit_distance.c',
             'string_distance/float_minimum_edit_distance.pxd',
-            'string_distance/sequence_distance',
-            'string_distance/token_distance',
+            'string_distance/sequence_distance.c'
+            'string_distance/sequence_distance.pxd',
+            'string_distance/token_distance.c'
         ],
     },
     include_package_data=True,
