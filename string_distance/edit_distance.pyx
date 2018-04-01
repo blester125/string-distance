@@ -6,11 +6,14 @@ from string_distance.minimum_edit_distance cimport distance, transpose_distance
 from string_distance.cost cimport ins_func, del_func, sub_func1, sub_func2, trans_func
 
 
-cpdef int hamming(unicode source, unicode target):
+cpdef int hamming(unicode source, unicode target) except -1:
     cdef int i
-    cdef int length = len(source)
+    cdef int source_length = len(source)
+    cdef int target_length = len(target)
     cdef int distance = 0
-    for i in range(length):
+    if source_length != target_length:
+        raise ValueError("Strings must be the same length.")
+    for i in range(source_length):
         if source[i] != target[i]:
             distance += 1
     return distance
