@@ -27,13 +27,12 @@ ext_modules = [
     ),
 ]
 
-version = "0.1.4"
+version = "0.1.5"
 
 setup(
     name="string_distance",
     version=version,
     description="Minimum Edit Distance",
-    long_description=open('README.md').read(),
     author="Brian Lester",
     author_email="blester125@gmail.com",
     url="https://github.com/blester125/string_distance",
