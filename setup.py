@@ -27,7 +27,7 @@ ext_modules = [
     ),
 ]
 
-version = "0.1.2"
+version = "0.1.3"
 
 setup(
     name="string_distance",
@@ -42,6 +42,7 @@ setup(
     packages=find_packages(),
     package_data={
         'string_distance': [
+            'README.md',
             'string_distance/cost.pxd',
             'string_distance/edit_distance.c',
             'string_distance/minimum_edit_distance.c',

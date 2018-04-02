@@ -1,3 +1,4 @@
+include README.md
 include string_distance/cost.pxd
 include string_distance/edit_distance.c
 include string_distance/minimum_edit_distance.c
