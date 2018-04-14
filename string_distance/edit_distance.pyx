@@ -3,7 +3,35 @@
 # cython: wraparound=False
 
 from string_distance.minimum_edit_distance cimport distance, transpose_distance
-from string_distance.cost cimport ins_func, del_func, sub_func1, sub_func2, trans_func
+from string_distance.maximum_edit_distance cimport distance as dist
+from string_distance.cost cimport (
+    ins_func, del_func,
+    sub_func1, sub_func2,
+    trans_func,
+    nw_init_func, sw_init_func,
+    nw_max_func, sw_max_func,
+    sim_func
+)
+
+
+cpdef int needleman_wunsch(unicode source, unicode target, int gap_cost=1):
+    return dist(
+        source, target,
+        gap_cost=gap_cost,
+        init=nw_init_func,
+        sim_func=sim_func,
+        max_fn=nw_max_func
+    )
+
+
+cpdef int smith_waterman(unicode source, unicode target, int gap_cost=1):
+    return dist(
+        source, target,
+        gap_cost=gap_cost,
+        init=sw_init_func,
+        sim_func=sim_func,
+        max_fn=sw_max_func
+    )
 
 
 cpdef int hamming(unicode source, unicode target) except -1:

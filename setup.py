@@ -6,6 +6,10 @@ ext_modules = [
         ["string_distance/minimum_edit_distance.pyx"]
     ),
     Extension(
+        "string_distance.maximum_edit_distance",
+        ["string_distance/maximum_edit_distance.pyx"]
+    ),
+    Extension(
         "string_distance.edit_distance",
         ["string_distance/edit_distance.pyx"],
     ),
@@ -27,7 +31,7 @@ ext_modules = [
     ),
 ]
 
-version = "0.1.5"
+version = "0.2.0"
 
 setup(
     name="string_distance",
@@ -46,6 +50,8 @@ setup(
             'string_distance/edit_distance.c',
             'string_distance/minimum_edit_distance.c',
             'string_distance/minimum_edit_distance.pxd',
+            'string_distance/maximum_edit_distance.c',
+            'string_distance/maximum_edit_distance.pxd',
             'string_distance/float_cost.pxd',
             'string_distance/float_edit_distance.c',
             'string_distance/float_minimum_edit_distance.c',

@@ -97,5 +97,3 @@ cdef int transpose_distance(
         PyMem_Free(source_ints)
         PyMem_Free(target_ints)
     return table[n, m]
-
-
