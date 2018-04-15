@@ -105,7 +105,7 @@ cpdef int levenshtein_no_sub(unicode source, unicode target):
     )
 
 
-cpdef list levenshtein_no_subss(unicode source, list targets):
+cpdef list levenshtein_no_subs(unicode source, list targets):
     cdef unicode target
     cdef list results = []
     for target in targets:
