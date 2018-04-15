@@ -16,7 +16,7 @@ cdef int distance(
 ) except? -1:
     cdef int n = len(source)
     cdef int m = len(target)
-    cdef int i, j
+    cdef int i = 0, j = 0
     cdef int[:, :] table = cvarray(shape=(n + 1, m + 1), itemsize=sizeof(int), format="i")
     cdef int* source_ints
     cdef int* target_ints
