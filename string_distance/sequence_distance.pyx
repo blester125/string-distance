@@ -70,6 +70,16 @@ cpdef int longest_common_substring(unicode source, unicode target) except -1:
     return length
 
 
+cpdef list longest_common_substrings(unicode source, list targets):
+    cdef unicode target
+    cdef list result = []
+    for target in targets:
+        result.append(
+            longest_common_substring(source, target)
+        )
+    return result
+
+
 cpdef unicode longest_common_substring_string(unicode source, unicode target):
     cdef unicode substring
     cdef Match* match = <Match*>PyMem_Malloc(sizeof(Match))
@@ -81,6 +91,16 @@ cpdef unicode longest_common_substring_string(unicode source, unicode target):
     finally:
         PyMem_Free(match)
     return substring
+
+
+cpdef list longest_common_substring_strings(unicode source, list targets):
+    cdef unicode target
+    cdef list result = []
+    for target in targets:
+        result.append(
+            longest_common_substring_string(source, target)
+        )
+    return result
 
 
 cdef int rco_recursive(unicode source, unicode target) except -1:
@@ -113,6 +133,16 @@ cpdef float ratcliff_obershelp(unicode source, unicode target) except -1:
     if element_count == 0:
         return 0
     return (<float>(2 * rco_recursive(source, target))) / element_count
+
+
+cpdef list ratcliff_obershelps(unicode source, list targets):
+    cdef unicode target
+    cdef list result = []
+    for target in targets:
+        result.append(
+            ratcliff_obershelps(source, target)
+        )
+    return result
 
 
 cpdef int longest_common_subsequence(unicode source, unicode target) except -1:
@@ -151,3 +181,13 @@ cpdef int longest_common_subsequence(unicode source, unicode target) except -1:
         PyMem_Free(target_ints)
 
     return table[n, m]
+
+
+cpdef list longest_common_subssequences(unicode source, list targets):
+    cdef unicode target
+    cdef list result = []
+    for target in targets:
+        result.append(
+            longest_common_subsequence(source, target)
+        )
+    return result

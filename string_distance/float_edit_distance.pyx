@@ -13,3 +13,11 @@ cpdef float brew(unicode source, unicode target):
         delete_cost=del_func,
         substitution_cost=sub_func
     )
+
+
+cpdef list brews(unicode source, list targets):
+    cdef unicode target
+    cdef list results = []
+    for target in targets:
+        results.append(brew(source, target))
+    return results

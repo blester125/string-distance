@@ -24,6 +24,16 @@ cpdef int needleman_wunsch(unicode source, unicode target, int gap_cost=1):
     )
 
 
+cpdef list needleman_wunschs(unicode source, list targets, int gap_cost=1):
+    cdef unicode target
+    cdef list results = []
+    for target in targets:
+        results.append(
+            needleman_wunschs(source, target, gap_cost=gap_cost)
+        )
+    return results
+
+
 cpdef int smith_waterman(unicode source, unicode target, int gap_cost=1):
     return dist(
         source, target,
@@ -32,6 +42,16 @@ cpdef int smith_waterman(unicode source, unicode target, int gap_cost=1):
         sim_func=sim_func,
         max_fn=sw_max_func
     )
+
+
+cpdef list smith_watermans(unicode source, list targets, int gap_cost=1):
+    cdef unicode target
+    cdef list results = []
+    for target in targets:
+        results.append(
+            smith_waterman(source, target, gap_cost=gap_cost)
+        )
+    return results
 
 
 cpdef int hamming(unicode source, unicode target) except -1:
@@ -47,6 +67,16 @@ cpdef int hamming(unicode source, unicode target) except -1:
     return distance
 
 
+cpdef list hammings(unicode source, list targets):
+    cdef unicode target
+    cdef list results = []
+    for target in targets:
+        results.append(
+            hamming(source, target)
+        )
+    return results
+
+
 cpdef int levenshtein(unicode source, unicode target):
     return distance(
         source, target,
@@ -54,6 +84,16 @@ cpdef int levenshtein(unicode source, unicode target):
         delete_cost=del_func,
         substitution_cost=sub_func1
     )
+
+
+cpdef list levenshteins(unicode source, list targets):
+    cdef unicode target
+    cdef list results = []
+    for target in targets:
+        results.append(
+            levenshtein(source, target)
+        )
+    return results
 
 
 cpdef int levenshtein_no_sub(unicode source, unicode target):
@@ -64,6 +104,15 @@ cpdef int levenshtein_no_sub(unicode source, unicode target):
         substitution_cost=sub_func2
     )
 
+
+cpdef list levenshtein_no_subss(unicode source, list targets):
+    cdef unicode target
+    cdef list results = []
+    for target in targets:
+        results.append(
+            levenshtein_no_sub(source, target)
+        )
+    return results
 
 # cpdef int levenshtein_heavy_vowels(unicode source, unicode target):
 #     return distance(
@@ -82,3 +131,13 @@ cpdef int damerau_levenshtein(unicode source, unicode target):
         substitution_cost=sub_func1,
         transpose_cost=trans_func
     )
+
+
+cpdef list damerau_levenshteins(unicode source, list targets):
+    cdef unicode target
+    cdef list results = []
+    for target in targets:
+        results.append(
+            damerau_levenshtein(source, target)
+        )
+    return results
