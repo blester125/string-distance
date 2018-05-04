@@ -2,7 +2,7 @@ from setuptools import setup, find_packages, Extension
 
 class About(object):
     NAME='string_distance'
-    VERSION='0.2.4'
+    VERSION='0.2.5'
     AUTHOR='blester125'
     EMAIL=f'{AUTHOR}@gmail.com'
     URL=f'https://github.com/{AUTHOR}/{NAME}'
