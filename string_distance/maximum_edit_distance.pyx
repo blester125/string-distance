@@ -35,7 +35,7 @@ cdef int distance(
             table[i, 0] = init(i, gap_cost)
         for j in range(1, m + 1):
             target_ints[j - 1] = target[j - 1]
-            table[0, j] = init(i, gap_cost)
+            table[0, j] = init(j, gap_cost)
 
         for i in range(1, n + 1):
             for j in range(1, m + 1):
