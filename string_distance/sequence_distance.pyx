@@ -183,7 +183,7 @@ cpdef int longest_common_subsequence(unicode source, unicode target) except -1:
     return table[n, m]
 
 
-cpdef list longest_common_subssequences(unicode source, list targets):
+cpdef list longest_common_subsequences(unicode source, list targets):
     cdef unicode target
     cdef list result = []
     for target in targets:
