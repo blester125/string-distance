@@ -1,5 +1,14 @@
 from setuptools import setup, find_packages, Extension
 
+class About(object):
+    NAME='string_distance'
+    VERSION='0.2.4'
+    AUTHOR='blester125'
+    EMAIL=f'{AUTHOR}@gmail.com'
+    URL=f'https://github.com/{AUTHOR}/{NAME}'
+    DL_URL=f'{URL}/archive/{VERSION}.tar.gz'
+    LICENSE='MIT'
+
 ext_modules = [
     Extension(
         "string_distance.minimum_edit_distance",
@@ -31,17 +40,18 @@ ext_modules = [
     ),
 ]
 
-version = "0.2.3"
 
 setup(
-    name="string_distance",
-    version=version,
+    name=About.NAME,
+    version=About.VERSION,
     description="Minimum Edit Distance",
-    author="Brian Lester",
-    author_email="blester125@gmail.com",
-    url="https://github.com/blester125/string_distance",
-    download_url=f"https://github.com/blester125/string_distance/archive/{version}.tar.gz",
-    license="MIT",
+    long_description=open('README.md').read(),
+    long_description_content_type="text/markdown",
+    author=About.AUTHOR,
+    author_email=About.EMAIL,
+    url=About.URL,
+    download_url=About.DL_URL,
+    license=About.LICENSE,
     packages=find_packages(),
     package_data={
         'string_distance': [
@@ -62,12 +72,11 @@ setup(
         ],
     },
     include_package_data=True,
-    keywords=["NLP", "fuzzy", "matching"],
+    install_requires=[
+    ],
     setup_requires=[
         'cython',
     ],
-    # install_requires=[
-    #     'cython',
-    # ],
+    keywords=[],
     ext_modules=ext_modules
 )
