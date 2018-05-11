@@ -1,13 +1,23 @@
+import re
 from setuptools import setup, find_packages, Extension
+
+def get_version(project_name):
+    regex = re.compile(r"^__version__ = '(\d+\.\d+\.\d+)'$")
+    with open(f"{project_name}/__init__.py") as f:
+        for line in f:
+            m = regex.match(line)
+            if m is not None:
+                return m.groups(1)[0]
 
 class About(object):
     NAME='string_distance'
-    VERSION='0.2.5'
+    VERSION=get_version(NAME)
     AUTHOR='blester125'
     EMAIL=f'{AUTHOR}@gmail.com'
     URL=f'https://github.com/{AUTHOR}/{NAME}'
     DL_URL=f'{URL}/archive/{VERSION}.tar.gz'
     LICENSE='MIT'
+
 
 ext_modules = [
     Extension(
@@ -73,6 +83,7 @@ setup(
     },
     include_package_data=True,
     install_requires=[
+        'cython',
     ],
     setup_requires=[
         'cython',

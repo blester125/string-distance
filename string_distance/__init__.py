@@ -1,3 +1,5 @@
+__version__ = '0.3.0'
+
 from string_distance.edit_distance import (
     levenshtein,
     levenshteins,
@@ -24,3 +26,4 @@ from string_distance.sequence_distance import (
     ratcliff_obershelp,
     ratcliff_obershelps,
 )
+from string_distance.bm25 import BM25, bm25_scores
