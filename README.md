@@ -1,6 +1,5 @@
 # Minimum Edit Distance in Cython
 [![Build Status](https://travis-ci.com/blester125/string_distance.svg?branch=master)](https://travis-ci.com/blester125/string_distance)
----
 
 This provides String Distance functions in Cython.
 
