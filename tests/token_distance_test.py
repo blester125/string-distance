@@ -4,8 +4,6 @@ from string_distance import cosine_distance, jaccard_distance, binary_cosine_dis
 def test_cosine_and_binary_different():
     source = "aabbaabcc"
     target = "abbacc"
-    print(cosine_distance(source, target))
-    print(binary_cosine_distance(source, target))
     assert cosine_distance(source, target) != binary_cosine_distance(source, target)
 
 
