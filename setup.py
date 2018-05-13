@@ -88,7 +88,7 @@ setup(
     setup_requires=[
         'cython',
     ],
-    extras_requires={
+    extras_require={
         'test': ['pytest'],
     },
     keywords=[],
