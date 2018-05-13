@@ -4,3 +4,5 @@ python:
 install:
     - "pip install -e .[test]"
 script: pytest
+notifications:
+    email: false
