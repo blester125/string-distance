@@ -136,9 +136,22 @@ def test_levenshtein_no_subboth_empty():
 
 # Damerau Levenshtein
 def test_dl_is_different():
-    source = "aaabbb"
-    target = "aababb"
+    source = "agdaabbvnb"
+    target = "aedababicb"
     assert damerau_levenshtein(source, target) != levenshtein(source, target)
+    assert damerau_levenshtein(source, target) == levenshtein(source, target) - 1
+
+def test_dl():
+    source = "from"
+    target = "form"
+    gold = 1
+    assert damerau_levenshtein(source, target) == gold
+
+def test_dl_2():
+    source = "jurisdiction"
+    target = "Copley"
+    gold = 12
+    assert damerau_levenshtein(source, target) == gold
 
 # Hamming Tests
 def test_hamming_size_mismatch():
