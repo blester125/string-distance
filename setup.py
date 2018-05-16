@@ -3,7 +3,7 @@ from setuptools import setup, find_packages, Extension
 
 def get_version(project_name):
     regex = re.compile(r"^__version__ = '(\d+\.\d+\.\d+)'$")
-    with open(f"{project_name}/__init__.py") as f:
+    with open("{}/__init__.py".format(project_name)) as f:
         for line in f:
             m = regex.match(line)
             if m is not None:
@@ -13,9 +13,9 @@ class About(object):
     NAME='string_distance'
     VERSION=get_version(NAME)
     AUTHOR='blester125'
-    EMAIL=f'{AUTHOR}@gmail.com'
-    URL=f'https://github.com/{AUTHOR}/{NAME}'
-    DL_URL=f'{URL}/archive/{VERSION}.tar.gz'
+    EMAIL='{}@gmail.com'.format(AUTHOR)
+    URL='https://github.com/{}/{}'.format(AUTHOR, NAME)
+    DL_URL='{}/archive/{}.tar.gz'.format(URL, VERSION)
     LICENSE='MIT'
 
 
