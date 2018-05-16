@@ -83,8 +83,6 @@ cdef float jaccard(dict source, dict target):
             intersection += 1
     for key in target:
         union_.add(key)
-    print(intersection)
-    print(len(union_))
     return 1 - (intersection / len(union_))
 
 
