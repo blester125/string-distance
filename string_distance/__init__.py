@@ -1,4 +1,4 @@
-__version__ = '0.3.0'
+__version__ = '0.3.1'
 
 from string_distance.edit_distance import (
     levenshtein,
