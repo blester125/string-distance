@@ -9,6 +9,10 @@ def get_version(project_name):
             if m is not None:
                 return m.groups(1)[0]
 
+def convert_images(text):
+    image_regex = re.compile(r"!\[(.*?)\]\((.*?)\)")
+    return image_regex.sub(r'<img src="\2" alt="\1">', text)
+
 class About(object):
     NAME='string_distance'
     VERSION=get_version(NAME)
@@ -55,7 +59,7 @@ setup(
     name=About.NAME,
     version=About.VERSION,
     description="Minimum Edit Distance",
-    long_description=open('README.md').read(),
+    long_description=convert_images(open('README.md').read()),
     long_description_content_type="text/markdown",
     author=About.AUTHOR,
     author_email=About.EMAIL,
