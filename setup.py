@@ -62,6 +62,7 @@ setup(
     url=About.URL,
     download_url=About.DL_URL,
     license=About.LICENSE,
+    python_requires='>=3.5',
     packages=find_packages(),
     package_data={
         'string_distance': [
