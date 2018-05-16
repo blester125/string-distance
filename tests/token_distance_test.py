@@ -9,9 +9,11 @@ def test_cosine_and_binary_different():
 
 def test_jaccard():
     source = "abcd"
+    source_shingled = ["ab", "bc", "cd"]
     target = "abddef"
+    target_shingled = ["ab", "bd", "dd", "de", "ef"]
     n = 2
-    intersection = 1
-    union = (len(source) - n) + (len(target) - n)
-    gold = intersection / union
-    math.isclose(jaccard_distance(source, target, n=n), gold)
+    intersection = len(set(source_shingled) & set(target_shingled))
+    union = len(set(source_shingled) | set(target_shingled))
+    gold = 1 - (intersection / union)
+    assert math.isclose(jaccard_distance(source, target, n=n), gold, rel_tol=1e-5)
