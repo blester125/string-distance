@@ -65,7 +65,7 @@ cdef float binary_cosine(dict source, dict target):
 cdef float cosine(dict source, dict target):
     cdef float source_norm = norm(source)
     cdef float target_norm = norm(target)
-    cdef float norm_ = source_norm + target_norm
+    cdef float norm_ = source_norm * target_norm
     cdef float intersection = 0
     for k, v in source.items():
         if k in target:
