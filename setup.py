@@ -2,12 +2,13 @@ import re
 from setuptools import setup, find_packages, Extension
 
 def get_version(project_name):
-    regex = re.compile(r"^__version__ = '(\d+\.\d+\.\d+)'$")
-    with open("{}/__init__.py".format(project_name)) as f:
+    regex = re.compile(r"^__version__ = '(\d+\.\d+\.\d+(?:a|b|rc)?(?:\d)*?)'$")
+    with open(f"{project_name}/__init__.py") as f:
         for line in f:
             m = regex.match(line)
             if m is not None:
                 return m.groups(1)[0]
+
 
 def convert_images(text):
     image_regex = re.compile(r"!\[(.*?)\]\((.*?)\)")
