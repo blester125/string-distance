@@ -1,6 +1,6 @@
 # cython: language_level=3
 # cython: boundscheck=False
-# cython: wrap_around=False
+# cython: wraparound=False
 
 from string_distance.cost cimport char_func, cmp_func
 
