@@ -1,5 +1,5 @@
 import math
-from collections import Counter
+from collections import Counter, defaultdict
 
 def BM25(corpus, k=1.5, b=0.75):
     corpus_size = len(corpus)
@@ -7,7 +7,7 @@ def BM25(corpus, k=1.5, b=0.75):
     avg_len = sum(doc_len) / corpus_size
     freqs = []
     df = Counter()
-    idf = {}
+    idf = defaultdict(int)
     epsilon = 0.25
 
     for document in corpus:
