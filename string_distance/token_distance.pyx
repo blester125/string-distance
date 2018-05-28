@@ -1,6 +1,7 @@
 # cython: language_level=3
 # cython: boundscheck=False
 # cython: wraparound=False
+# cython: cdivision=True
 
 from cpython cimport PyMem_Malloc, PyMem_Free
 from libc.math cimport sqrt
@@ -59,7 +60,7 @@ cdef float binary_cosine(dict source, dict target):
     for key in source:
         if key in target:
             intersection += 1
-    return 1 - (intersection / norm_)
+    return 1 - ((<float>intersection) / norm_)
 
 
 cdef float cosine(dict source, dict target):
@@ -70,7 +71,7 @@ cdef float cosine(dict source, dict target):
     for k, v in source.items():
         if k in target:
             intersection += v * target[k]
-    return 1 - (intersection / norm_)
+    return 1 - ((<float>intersection) / norm_)
 
 
 cdef float jaccard(dict source, dict target):
@@ -83,7 +84,7 @@ cdef float jaccard(dict source, dict target):
             intersection += 1
     for key in target:
         union_.add(key)
-    return 1 - (intersection / len(union_))
+    return 1 - ((<float>intersection) / len(union_))
 
 
 cdef float distance(
