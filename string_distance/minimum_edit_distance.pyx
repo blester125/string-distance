@@ -78,6 +78,7 @@ cdef int transpose_distance(
 
     try:
         table[0, 0] = 0
+        index = 0
         for j in range(1, m + 1):
             target_ints[j - 1] = target[j - 1]
             table[0, j] = table[0, j - 1] + insert_cost(target_ints[j - 1])
@@ -90,7 +91,7 @@ cdef int transpose_distance(
             elif index == 1:
                 offset = -1
                 t_offset = 1
-            elif index == 2:
+            else:
                 offset = -1
                 t_offset = -2
             source_ints[i - 1] = source[i - 1]

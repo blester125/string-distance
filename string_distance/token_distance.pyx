@@ -60,7 +60,7 @@ cdef float binary_cosine(dict source, dict target):
     for key in source:
         if key in target:
             intersection += 1
-    return 1 - ((<float>intersection) / norm_)
+    return (<float>intersection) / norm_
 
 
 cdef float cosine(dict source, dict target):
@@ -68,10 +68,12 @@ cdef float cosine(dict source, dict target):
     cdef float target_norm = norm(target)
     cdef float norm_ = source_norm * target_norm
     cdef float intersection = 0
+    cdef unicode k
+    cdef float v
     for k, v in source.items():
         if k in target:
             intersection += v * target[k]
-    return 1 - ((<float>intersection) / norm_)
+    return (<float>intersection) / norm_
 
 
 cdef float jaccard(dict source, dict target):
@@ -84,7 +86,7 @@ cdef float jaccard(dict source, dict target):
             intersection += 1
     for key in target:
         union_.add(key)
-    return 1 - ((<float>intersection) / len(union_))
+    return (<float>intersection) / len(union_)
 
 
 cdef float distance(
@@ -99,7 +101,7 @@ cdef float distance(
     target_ngrams = n_grams(target, n)
     source_vec = transform(source_ngrams)
     target_vec = transform(target_ngrams)
-    return metric(source_vec, target_vec)
+    return 1 - metric(source_vec, target_vec)
 
 
 cpdef float binary_cosine_distance(unicode source, unicode target, int n=2):

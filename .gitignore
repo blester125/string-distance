@@ -9,3 +9,4 @@ __pycache__/
 *.c
 *.html
 .pytest_cache/
+tests/build
