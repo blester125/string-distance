@@ -1,7 +1,7 @@
 import math
 from collections import Counter
 from string_distance import cosine_distance, jaccard_distance, binary_cosine_distance
-import pyximport; pyximport.install(build_in_temp=True, inplace=True)
+# import pyximport; pyximport.install(build_in_temp=True, inplace=True)
 from wrapper import *
 
 def test_cosine_and_binary_different():

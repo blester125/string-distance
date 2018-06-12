@@ -68,7 +68,7 @@ setup(
     download_url=About.DL_URL,
     license=About.LICENSE,
     python_requires='>=3.5',
-    packages=find_packages(),
+    packages=['string_distance'],
     package_data={
         'string_distance': [
             'README.md',

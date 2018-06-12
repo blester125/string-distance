@@ -1,4 +1,5 @@
 import math
+import random
 import pytest
 from string_distance import (
     hamming,
@@ -6,6 +7,7 @@ from string_distance import (
     levenshtein_no_sub,
     brew,
     damerau_levenshtein,
+    longest_common_subsequence,
 )
 
 
@@ -173,3 +175,20 @@ def test_hamming():
     target = "101110011"
     gold = 3
     assert hamming(source, target) == gold
+
+
+def test_edit_distance_from_LCS():
+    """Edit distance (with only insert and delete) should be equ with
+        len(a) + len(b) + 2 * lcs(a, b)
+        from: Mining of Massive Datasets second ed. ch 3 page 96
+    """
+    def real_test(source, target):
+        lcs = longest_common_subsequence(source, target)
+        gold = levenshtein_no_sub(source, target)
+        assert (len(source) + len(target) - (2 * lcs)) == gold
+
+    trials = 100
+    for _ in range(trials):
+        source = ''.join([random.choice(("G", "A", "T", "C")) for _ in range(random.randint(5, 41))])
+        target = ''.join([random.choice(("G", "A", "T", "C")) for _ in range(random.randint(5, 41))])
+        real_test(source, target)
