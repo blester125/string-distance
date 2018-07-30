@@ -1,4 +1,5 @@
 import math
+import string
 import random
 import pytest
 from string_distance import (
@@ -8,6 +9,8 @@ from string_distance import (
     brew,
     damerau_levenshtein,
     longest_common_subsequence,
+    jaro,
+    jaro_winkler
 )
 
 
@@ -192,3 +195,38 @@ def test_edit_distance_from_LCS():
         source = ''.join([random.choice(("G", "A", "T", "C")) for _ in range(random.randint(5, 41))])
         target = ''.join([random.choice(("G", "A", "T", "C")) for _ in range(random.randint(5, 41))])
         real_test(source, target)
+
+# Jaro(_Winker)? tests
+def test_jaro_vs_winkler_prefix_match():
+    prefix = ''.join([random.choice(string.ascii_lowercase) for _ in range(4)])
+    source = ''.join([random.choice(string.ascii_lowercase) for _ in range(10)])
+    target = ''.join([random.choice(string.ascii_lowercase) for _ in range(10)])
+    source = prefix + source
+    target = prefix + target
+    j = jaro(source, target)
+    jw = jaro_winkler(source, target)
+    assert not math.isclose(j, jw)
+
+def test_jaro_vs_winkler_prefix_mismatch():
+    prefix = ''.join([random.choice(string.ascii_lowercase) for _ in range(4)])
+    prefix2 = ''.join([chr(ord(c) + 1) for c in prefix])
+    source = ''.join([random.choice(string.ascii_lowercase) for _ in range(10)])
+    target = ''.join([random.choice(string.ascii_lowercase) for _ in range(10)])
+    source = prefix + source
+    target = prefix2 + target
+    assert prefix != prefix2
+    j = jaro(source, target)
+    jw = jaro_winkler(source, target)
+    assert math.isclose(j, jw)
+
+def test_jaro():
+    source = "This is a test"
+    target = "There is goes"
+    gold = 0.7257742285728455
+    assert math.isclose(jaro(source, target), gold)
+
+def test_jaro_winkler():
+    source = "This is a test"
+    target = "There is goes"
+    gold = 0.7806193828582764
+    assert math.isclose(jaro_winkler(source, target), gold)

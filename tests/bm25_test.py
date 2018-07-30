@@ -18,3 +18,9 @@ def test_bm_weights():
     for row, gold_row in zip(scores, gold):
         for weight, gold_weight in zip(row, gold_row):
             assert math.isclose(weight, gold_weight)
+
+def test_closure():
+    gold = 1.0216512475319814
+    bm25 = BM25(corpus)
+    weight = bm25(["rocket", "in", "outer", "space"], 1)
+    assert math.isclose(weight, gold)
